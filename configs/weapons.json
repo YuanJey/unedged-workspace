@@ -1,0 +1,63 @@
+{
+  "archetypes": {
+    "TANGDAO": {
+      "name": "唐刀",
+      "base_stats": {
+        "max_hp": 1000,
+        "max_stamina": 100,
+        "max_poise": 100,
+        "light_attack_startup_frames": 8,
+        "light_attack_active_frames": 4,
+        "light_attack_recovery_frames": 12,
+        "parry_window_frames": 11
+      },
+      "stances": {
+        "ONE_HANDED": {
+          "move_speed_mult": 1.05,
+          "damage_mult": 1.0,
+          "guard_stamina_cost_mult": 1.2,
+          "has_hyper_armor_on_top_heavy": false
+        },
+        "TWO_HANDED": {
+          "move_speed_mult": 0.92,
+          "damage_mult": 1.2,
+          "guard_stamina_cost_mult": 0.6,
+          "has_hyper_armor_on_top_heavy": true
+        }
+      },
+      "default_skill_1": "SKILL_TANGDAO_STEP_SLASH"
+    }
+  },
+  "weapons": [
+    {
+      "weapon_id": "td_standard_01",
+      "weapon_name": "制式陌上刀",
+      "archetype": "TANGDAO",
+      "skill_overrides": {
+        "SLOT_1": "SKILL_TANGDAO_STEP_SLASH",
+        "SLOT_2": "SKILL_TANGDAO_FLOW_COMBO"
+      },
+      "balance_tradeoff": "均衡标准模组，收招硬直最短，容错率最高"
+    },
+    {
+      "weapon_id": "td_hanchan_02",
+      "weapon_name": "名刀·寒蝉",
+      "archetype": "TANGDAO",
+      "skill_overrides": {
+        "SLOT_1": "SKILL_HANCHAN_SHADOW_DASH",
+        "SLOT_2": "SKILL_HANCHAN_RETURN_BLINK"
+      },
+      "balance_tradeoff": "突进距离-20%且伤害-15%，但可在目标身后留残影并二段瞬移撤离"
+    },
+    {
+      "weapon_id": "td_duanyue_03",
+      "weapon_name": "名刀·断岳",
+      "archetype": "TANGDAO",
+      "skill_overrides": {
+        "SLOT_1": "SKILL_TANGDAO_STEP_SLASH",
+        "SLOT_2": "SKILL_DUANYUE_UNBLOCKABLE_SLAM"
+      },
+      "balance_tradeoff": "获得不可格挡破防下劈，但前摇长达22帧，侧闪躲开后有极大破绽"
+    }
+  ]
+}

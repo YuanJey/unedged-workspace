@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package unedged.battle.v1;
+
+option go_package = "unedged-server/internal/pb;pb";
+
+// 三向攻防架势方向
+enum CombatDirection {
+  DIR_NONE  = 0;
+  DIR_TOP   = 1; // 上段
+  DIR_LEFT  = 2; // 左侧
+  DIR_RIGHT = 3; // 右侧
+}
+
+// 武器握持姿态
+enum GripStance {
+  GRIP_ONE_HAND_R = 0; // 右手单持（默认）
+  GRIP_ONE_HAND_L = 1; // 左手换手（镜像动作）
+  GRIP_TWO_HAND   = 2; // 双手持握（高伤霸体）
+}
+
+// 玩家单帧输入指令（60Hz 采集发送）
+message PlayerFrameInput {
+  uint32 frame_id           = 1; // 逻辑帧号
+  int32 move_x              = 2; // 移动水平分量 (-1000 ~ 1000 定点数)
+  int32 move_y              = 3; // 移动垂直分量 (-1000 ~ 1000 定点数)
+  CombatDirection guard_dir = 4; // 当前设定的攻防方向（上/左/右）
+  uint32 action_bitmask     = 5; // 按键位掩码: 1=轻击, 2=重击, 4=防御, 8=闪避, 16=切换握持姿态, 32=绝学1, 64=绝学2, 128=变招取消
+}
+
+// 战前角色与名器初始化数据（进入擂台时同步一次）
+message FighterLoadout {
+  uint64 character_id          = 1;
+  string char_name             = 2;
+  string gameplay_weapon_id    = 3; // 决定技能帧数据（如 td_hanchan_02）
+  string cosmetic_skin_id      = 4; // 决定赛季武器外观幻化（纯视觉）
+  GripStance initial_grip      = 5;
+
+  // 10点自由属性分配（总和 <= 10）
+  uint32 attr_jingu            = 6; // 筋骨
+  uint32 attr_shenfa           = 7; // 身法
+  uint32 attr_neixi            = 8; // 内息
+  uint32 attr_dongcha          = 9; // 洞察
+
+  // 体型滑块参数（受限区间 0.95 ~ 1.05）
+  map<string, float> morph_targets = 10;
+}
