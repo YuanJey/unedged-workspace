@@ -23,6 +23,20 @@ git submodule update --init --recursive
 
 ## 变更日志与审计追溯
 
+### [2026-11-24 - 3D 角色模型美化与武侠斗笠剑客装配]
+- **剑客形体多层级重构**：
+  - 彻底替换原有单一胶囊体，构建复合中式剑客视觉网格（`VisualModel`）：竹编微斜宽檐斗笠（`HatMesh`）、遮面玄黑面罩（`MaskMesh`）、倒梯形玄铁胸铠（`ChestArmor`）、束腰朱红带扣（`WaistBelt`）、战袍长裙摆（`RobeSkirt`）及棱角外展护肩板甲。
+- **唐刀冷兵器部件精细化**：
+  - 将原单一长方块升级为包含狭长冷钢直刃（高反光金属度）、方圆青铜雕花刀镡（`GuardMesh`）、暗色防滑柄卷（`HiltMesh`）及刀首配重环（`PommelMesh`）的完整唐刀。
+- **敌我阵营 PBR 材质分色**：
+  - 玩家（P1）：玄黑夜行武袍 + 青冷玄铁铠 + 寒芒冷钢直刃。
+  - 木桩（P2）：赤赭古铜铠 + 暗红战袍 + 淬火暗红铜刃，大幅提升 3D 对弈视觉辨识度。
+- **工程构建净化**：
+  - 注入 `client/.gitignore`，从 Git 索引彻底清除 `.godot/` 本地着色器与编辑器缓存目录。
+- **版本归档**：
+  - 子模块 `client` (HEAD -> `5406ea8`) 推送至 GitHub。
+  - 主工作区同步更新 submodule 引用指针。
+
 ### [2026-11-24 - 修复 Godot 4 CombatConstants 全局类名解析中断]
 - **符号绑定解耦与时序保护**：
   - 在 `hitbox_3d.gd`、`hurtbox_3d.gd`、`combat_state_machine.gd`、`fighter_controller.gd` 头部显式注入 `const CombatConstants = preload(...)`。
