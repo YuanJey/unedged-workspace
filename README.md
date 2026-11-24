@@ -23,6 +23,14 @@ git submodule update --init --recursive
 
 ## 变更日志与审计追溯
 
+### [2026-11-24 - 修复 Godot 4 CombatConstants 全局类名解析中断]
+- **符号绑定解耦与时序保护**：
+  - 在 `hitbox_3d.gd`、`hurtbox_3d.gd`、`combat_state_machine.gd`、`fighter_controller.gd` 头部显式注入 `const CombatConstants = preload(...)`。
+  - 彻底规避 Godot 4 引擎在冷启动与动态重载阶段全局类名（Global Class Cache）未建立完成导致的 `Parse Error: Identifier "CombatConstants" not declared in the current scope`。
+- **版本归档**：
+  - 子模块 `client` (HEAD -> `dd271f5`) 推送至 GitHub。
+  - 主工作区同步更新 submodule 引用指针。
+
 ### [2026-11-24 - 客户端 3D 角色与受击判定盒可视化]
 - **碰撞判定核心组件**：
   - 编写 `client/scripts/combat/hitbox_3d.gd`：挂载于武器刃部，由状态机有效判定帧（`ATTACK_ACTIVE`）精确门禁激活/停用，支持鲜红半透明高亮。
