@@ -45,3 +45,4 @@ message FighterLoadout {
   // 体型滑块参数（受限区间 0.95 ~ 1.05）
   map<string, float> morph_targets = 10;
 }
+

@@ -23,6 +23,19 @@ git submodule update --init --recursive
 
 ## 变更日志与审计追溯
 
+### [2026-11-24 - 客户端 3D 角色与受击判定盒可视化]
+- **碰撞判定核心组件**：
+  - 编写 `client/scripts/combat/hitbox_3d.gd`：挂载于武器刃部，由状态机有效判定帧（`ATTACK_ACTIVE`）精确门禁激活/停用，支持鲜红半透明高亮。
+  - 编写 `client/scripts/combat/hurtbox_3d.gd`：包裹角色躯干，监听 Hitbox 碰撞并接入三向攻防与 11 帧弹反裁决，提供常态绿/蓝格挡/金光弹反/血红受击动态自发光材质反馈。
+- **3D 角色与控制机装配**：
+  - 编写 `client/scripts/character/fighter_controller.gd`：读取输入打包 60Hz 掩码、驱动 CharacterBody3D、握持姿态切换（单持/换手/双手霸体）与武器挥砍物理表现。
+  - 构建预制体 `client/scenes/fighter.tscn`：集成胶囊体、Hitbox、Hurtbox、三向架势指示器与头顶 3D 状态 Label。
+- **灰盒测试擂台主场景**：
+  - 搭建 `client/scenes/arena.tscn`：布设地面、光照、俯仰摄像机，部署玩家角色（P1）与自动周期出刀的木桩（Dummy P2），并在 `project.godot` 中设为主入口。
+- **版本归档**：
+  - 子模块 `client` (HEAD -> `29c3c29`) 推送至 GitHub。
+  - 主工作区同步更新 submodule 引用指针。
+
 ### [2026-11-23 - 核心系统落地与基线构建]
 - **共享契约与自动化构建**：
   - 注入 `configs/weapons.json`：定义唐刀（TANGDAO）大类基础帧数据、姿态加成（单持/换手/双持）及 3 把名器代偿机制。

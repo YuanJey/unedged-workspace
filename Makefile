@@ -20,3 +20,4 @@ proto: sync-configs
 # 启动 Go 服务端网关
 run-server:
 	cd server && go run ./cmd/gateway/main.go
+
