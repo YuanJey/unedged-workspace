@@ -16,7 +16,7 @@ enum CombatDirection {
 enum GripStance {
   GRIP_ONE_HAND_R = 0; // 右手单持（默认）
   GRIP_ONE_HAND_L = 1; // 左手换手（镜像动作）
-  GRIP_TWO_HAND   = 2; // 双手持握（高伤霸体）
+  GRIP_TWO_HAND   = 2; // 双手持握（双手沉劲，高伤重势）
 }
 
 // 玩家单帧输入指令（60Hz 采集发送）

@@ -23,6 +23,15 @@ git submodule update --init --recursive
 
 ## 变更日志与审计追溯
 
+### [2026-11-24 - 战斗规则重构：彻底剔除双手霸体机制]
+- **规则修正与全链路净化**：
+  - **契约层**：从 `configs/weapons.json` 及 `client/assets/configs/weapons.json` 彻底删除 `has_hyper_armor_on_top_heavy` 字段；`proto/battle.proto` 修正注释为“双手沉劲，高伤重势”。
+  - **服务端**：`server/internal/config/config.go` 剔除结构体字段，通过全量编译校验。
+  - **客户端**：`combat_constants.gd`、`combat_state_machine.gd` 移除 `has_hyper_armor` 状态变量与赋值分支，所有未成功格挡命中强制进入受击硬直（Hitstun）；`fighter_controller.gd` 看板与 `arena.tscn` 引导文案纠正为“双手重势”。
+- **版本归档**：
+  - 子模块 `client` (HEAD -> `8c68bf9`) 与 `server` (HEAD -> `7f0168e`) 分别推送至 GitHub。
+  - 主工作区同步更新 submodule 引用指针。
+
 ### [2026-11-24 - 3D 角色模型美化与武侠斗笠剑客装配]
 - **剑客形体多层级重构**：
   - 彻底替换原有单一胶囊体，构建复合中式剑客视觉网格（`VisualModel`）：竹编微斜宽檐斗笠（`HatMesh`）、遮面玄黑面罩（`MaskMesh`）、倒梯形玄铁胸铠（`ChestArmor`）、束腰朱红带扣（`WaistBelt`）、战袍长裙摆（`RobeSkirt`）及棱角外展护肩板甲。
