@@ -23,6 +23,19 @@ git submodule update --init --recursive
 
 ## 变更日志与审计追溯
 
+### [2026-11-24 - 《刀剑2》“秋红叶”经典神韵 3D 角色重塑]
+- **秋红叶标志性形体重构**：
+  - 构建侠客高束马尾发辫（`Ponytail`，斜向后上方微扬姿态）、束发朱红发带（`HairRibbon`）与前额不羁碎发刘海。
+  - 上身采用经典枫红交领战袍（`StandardMaterial3D_cloth_autumn`）配合修长双开叉下摆。
+  - 呈现标志性的单侧重铠不对称美感：右肩配深冷玄铁棱角肩铠（`RightPauldron`），左肩展现潇洒交领布肩。
+- **寒枫唐刀配饰升级**：
+  - 直刃采用冷钢淬火微泛淡红寒芒，青铜镂空方圆刀镡，刀首尾端新增朱红小剑穗（`TasselMesh`）。
+- **阵营质感适配**：
+  - P1 玩家确认为“秋红叶”枫红玄铁武服；P2 木桩切换为素灰武者服与古青铜试炼铠。
+- **版本归档**：
+  - 子模块 `client` (HEAD -> `1e463af`) 推送至 GitHub。
+  - 主工作区同步更新 submodule 引用指针。
+
 ### [2026-11-24 - 战斗规则重构：彻底剔除双手霸体机制]
 - **规则修正与全链路净化**：
   - **契约层**：从 `configs/weapons.json` 及 `client/assets/configs/weapons.json` 彻底删除 `has_hyper_armor_on_top_heavy` 字段；`proto/battle.proto` 修正注释为“双手沉劲，高伤重势”。
